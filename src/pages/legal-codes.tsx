@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Book, Briefcase, Users, Gavel, Shield } from 'lucide-react';
+import { Book, Briefcase, Users, Gavel, Shield, Home, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 const LegalCodes = () => {
   const codes = [
@@ -10,6 +11,12 @@ const LegalCodes = () => {
     { title: "قانون العمل", icon: Gavel, link: "/legal-topics/labor-law" },
     { title: "القانون الجنائي", icon: Shield, link: "/legal-topics/criminal-law" },
   ];
+
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,18 +29,8 @@ const LegalCodes = () => {
             <nav>
               <ul className="flex space-x-reverse space-x-4">
                 <li>
-                  <Link href="/" className="hover:text-white/80">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes/" className="hover:text-white/80">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80">
-                    الكتب الدراسية
+                  <Link href="/" className="hover:text-white/80 transition-colors">
+                    <Home size={28} />
                   </Link>
                 </li>
               </ul>

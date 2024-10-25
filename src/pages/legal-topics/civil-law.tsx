@@ -1,8 +1,15 @@
 import React from 'react';
-import { FileDown } from 'lucide-react';
+import { FileDown, Home, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const CivilLawPage = () => {
+const CivilLawPage: React.FC = () => {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-blue-600 text-white shadow-md">
@@ -13,17 +20,26 @@ const CivilLawPage = () => {
             </Link>
             <nav>
               <ul className="flex space-x-reverse space-x-4">
-                <li><Link href="/" className="hover:text-white/80">الرئيسية</Link></li>
-                <li><Link href="/legal-codes" className="hover:text-white/80">القوانين الأردنية</Link></li>
-                <li><Link href="/course-books" className="hover:text-white/80">الكتب الدراسية</Link></li>
-                <li><Link href="/legal-topics" className="hover:text-white/80">المواضيع القانونية</Link></li>
+                <li>
+                  <Link href="/" className="hover:text-white/80 transition-colors">
+                    <Home size={28} />
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8" dir="rtl">
+      <main className="container mx-auto px-4 py-8 relative" dir="rtl">
+        <button 
+          onClick={handleBack} 
+          className="absolute top-0 right-4 mt-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <ArrowRight className="ml-2" />
+          رجوع
+        </button>
+
         <h1 className="text-4xl font-bold mb-6 text-center">القانون المدني في الأردن</h1>
         
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">

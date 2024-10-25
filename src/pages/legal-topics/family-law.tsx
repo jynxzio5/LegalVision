@@ -1,8 +1,15 @@
 import React from 'react';
-import { FileDown } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Home, ArrowRight } from 'lucide-react';
 
-const FamilyLawPage = () => {
+const FamilyLawPage: React.FC = () => {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-blue-600 text-white shadow-md">
@@ -14,23 +21,8 @@ const FamilyLawPage = () => {
             <nav>
               <ul className="flex space-x-reverse space-x-4">
                 <li>
-                  <Link href="/" className="hover:text-white/80">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes" className="hover:text-white/80">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80">
-                    الكتب الدراسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-topics" className="hover:text-white/80">
-                    المواضيع القانونية
+                  <Link href="/" className="hover:text-white/80 transition-colors">
+                    <Home size={28} />
                   </Link>
                 </li>
               </ul>
@@ -39,7 +31,15 @@ const FamilyLawPage = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8" dir="rtl">
+      <main className="container mx-auto px-4 py-8 relative" dir="rtl">
+        <button 
+          onClick={handleBack} 
+          className="absolute top-0 right-4 mt-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <ArrowRight className="ml-2" />
+          رجوع
+        </button>
+
         <h1 className="text-4xl font-bold mb-6 text-center">قانون الأسرة في الأردن</h1>
         
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -54,7 +54,7 @@ const FamilyLawPage = () => {
           <ul className="list-disc list-inside space-y-2 text-gray-700">
             <li>تنظيم عقد الزواج وشروطه</li>
             <li>تحديد حقوق وواجبات الزوجين</li>
-            <li>تنظيم إجراءات الطلاق والتفريق</li>
+            <li>تنظيم إجراءا الطلاق والتفريق</li>
             <li>تحديد حقوق الأطفال في النفقة والحضانة</li>
             <li>تنظيم قضايا النسب والرضاعة</li>
             <li>تحديد قواعد الميراث وفقًا للشريعة الإسلامية</li>
@@ -109,8 +109,7 @@ const FamilyLawPage = () => {
             href="/api/download/family-law-jordan.pdf"
             className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
           >
-            <FileDown size={20} className="ml-2" />
-            تحميل النص الكامل لقانون الأسرة الأردني (PDF)
+             تحميل النص الكامل لقانون الأسرة الأردني (PDF)
           </a>
         </div>
       </main>

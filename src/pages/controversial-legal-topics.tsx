@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Home } from 'lucide-react';
 
 const ControversialLegalTopics: React.FC = () => {
   return (
@@ -14,22 +15,7 @@ const ControversialLegalTopics: React.FC = () => {
               <ul className="flex space-x-reverse space-x-4">
                 <li>
                   <Link href="/" className="hover:text-white/80 transition-colors">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes" className="hover:text-white/80 transition-colors">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80 transition-colors">
-                    الكتب الدراسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-topics" className="hover:text-white/80 transition-colors">
-                    المواضيع القانونية
+                    <Home size={28} />
                   </Link>
                 </li>
               </ul>

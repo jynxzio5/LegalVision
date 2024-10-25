@@ -1,8 +1,14 @@
 import React from 'react';
-import { FileDown } from 'lucide-react';
+import { Home, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const CommercialLawPage = () => {
+const CommercialLawPage: React.FC = () => {
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-blue-600 text-white shadow-md">
@@ -14,23 +20,8 @@ const CommercialLawPage = () => {
             <nav>
               <ul className="flex space-x-reverse space-x-4">
                 <li>
-                  <Link href="/" className="hover:text-white/80">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes" className="hover:text-white/80">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80">
-                    الكتب الدراسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-topics" className="hover:text-white/80">
-                    المواضيع القانونية
+                  <Link href="/" className="hover:text-white/80 transition-colors">
+                    <Home size={28} />
                   </Link>
                 </li>
               </ul>
@@ -39,7 +30,15 @@ const CommercialLawPage = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8" dir="rtl">
+      <main className="container mx-auto px-4 py-8 relative" dir="rtl">
+        <button 
+          onClick={handleBack} 
+          className="absolute top-0 right-4 mt-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <ArrowRight className="ml-2" />
+          رجوع
+        </button>
+
         <h1 className="text-4xl font-bold mb-6 text-center">القانون التجاري في الأردن</h1>
         
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -56,7 +55,7 @@ const CommercialLawPage = () => {
             <li>تنظيم السجل التجاري</li>
             <li>قواعد المنافسة التجارية</li>
             <li>تنظيم الشركات التجارية وأنواعها</li>
-            <li>الأوراق التجارية (الشيكات، الكمبيالات، السندات لأمر)</li>
+            <li>الأوراق التجارية (الشيكات، الكمبالات، السندات لأمر)</li>
             <li>العقود التجارية</li>
             <li>الإفلاس والتصفية</li>
           </ul>
@@ -93,7 +92,7 @@ const CommercialLawPage = () => {
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <h2 className="text-2xl font-semibold mb-4">العقود التجارية</h2>
           <p className="text-gray-700 mb-4">
-            ينظم القانون التجاري مجموعة من العقود التجارية الهامة، منها:
+            ينم القانون التجاري مجموعة من العقود التجارية الهامة، منها:
           </p>
           <ul className="list-disc list-inside space-y-2 text-gray-700">
             <li>عقد البيع التجاري</li>
@@ -111,8 +110,7 @@ const CommercialLawPage = () => {
             className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
             download="القانون_التجاري_الأردني.pdf"
           >
-            <FileDown size={20} className="ml-2" />
-            تحميل النص الكامل للقانون التجاري الأردني (PDF)
+             تحميل النص الكامل للقانون التجاري الأردني (PDF)
           </a>
         </div>
       </main>

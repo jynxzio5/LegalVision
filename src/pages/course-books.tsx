@@ -1,9 +1,12 @@
 import React from 'react';
-import { FileDown, Instagram } from 'lucide-react';
+import { FileDown, Instagram, ArrowRight, Home } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const CourseBooks = () => {
+  const router = useRouter();
   const books = [
+    { title: "مجلة الأحكام العدلية", filename: "/pdfs/majallat-al-ahkam-al-adliyyah.pdf", available: true },
     { title: "الثقافة الوطنية", filename: "/pdfs/national-culture.pdf", available: true },
     { title: "الإسلام وقضايا العصر", filename: "/pdfs/islam-contemporary-issues.pdf", available: true },
     { title: "الريادة والابتكار", filename: "/pdfs/book3.pdf", available: true },
@@ -38,17 +41,7 @@ const CourseBooks = () => {
               <ul className="flex space-x-reverse space-x-4">
                 <li>
                   <Link href="/" className="hover:text-white/80">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes" className="hover:text-white/80">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80">
-                    الكتب الدراسية
+                    <Home size={28} /> {/* تم استبدال النص بأيقونة المنزل */}
                   </Link>
                 </li>
               </ul>
@@ -58,10 +51,18 @@ const CourseBooks = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8" dir="rtl">
-        <h1 className="text-4xl font-bold mb-6 text-center">الكتب الدراسية الجامعية</h1>
+        <button 
+          onClick={() => router.back()} 
+          className="mb-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <ArrowRight className="ml-2" />
+          رجوع
+        </button>
+
+        <h1 className="text-4xl font-bold mb-6 text-center">الكتب الدراسية والمراجع القانونية</h1>
         
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">الكتب الدراسية</h2>
+          <h2 className="text-2xl font-semibold mb-4">الكتب والمراجع</h2>
           <ul className="space-y-4">
             {books.map((book, index) => (
               <li key={index} className="flex items-center justify-between border-b pb-4 last:border-b-0 last:pb-0">
