@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Book, Briefcase, Users, Gavel, Shield, Home, ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/router';
+import { Book, Briefcase, Users, Gavel, Shield, Home } from 'lucide-react';
 
 const LegalCodes = () => {
   const codes = [
@@ -11,12 +10,6 @@ const LegalCodes = () => {
     { title: "قانون العمل", icon: Gavel, link: "/legal-topics/labor-law" },
     { title: "القانون الجنائي", icon: Shield, link: "/legal-topics/criminal-law" },
   ];
-
-  const router = useRouter();
-
-  const handleBack = () => {
-    router.back();
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">

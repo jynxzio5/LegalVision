@@ -1,7 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import { Home, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 const CivilRightsPage = () => {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-blue-600 text-white shadow-md">
@@ -11,25 +19,10 @@ const CivilRightsPage = () => {
               رؤيا قانونية
             </Link>
             <nav>
-              <ul className="flex space-x-reverse space-x-4">
+              <ul className="flex items-center">
                 <li>
                   <Link href="/" className="hover:text-white/80">
-                    الرئيسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-codes" className="hover:text-white/80">
-                    القوانين الأردنية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/course-books" className="hover:text-white/80">
-                    الكتب الدراسية
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal-topics" className="hover:text-white/80">
-                    المواضيع القانونية
+                    <Home size={24} />
                   </Link>
                 </li>
               </ul>
@@ -40,6 +33,14 @@ const CivilRightsPage = () => {
 
       <main className="container mx-auto px-4 py-8" dir="rtl">
         <h1 className="text-4xl font-bold mb-6 text-center">الحقوق المدنية في الأردن</h1>
+        
+        <button 
+          onClick={handleBack} 
+          className="flex items-center mb-4 text-blue-600 hover:text-blue-800"
+        >
+          <ArrowLeft size={20} className="ml-1" />
+          رجوع
+        </button>
         
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <h2 className="text-2xl font-semibold mb-4">نظرة عامة</h2>
@@ -83,7 +84,7 @@ const CivilRightsPage = () => {
           </p>
           <ul className="list-disc list-inside space-y-2 text-gray-700">
             <li>تعزيز المساواة بين الجنسين</li>
-            <li>حماية حقوق الأقليات</li>
+            <li>حماية حقق الأقليات</li>
             <li>ضمان حرية الصحافة والإعلام</li>
             <li>تحسين ظروف العمل وحقوق العمال</li>
             <li>تعزيز استقلال القضاء</li>
