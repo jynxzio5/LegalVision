@@ -1,57 +1,100 @@
-import React from 'react';
-import { FileDown, Home, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { FileDown, Home, ArrowRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTheme } from '../../contexts/ThemeContext';
+
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+  .menu-title {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+  }
+`;
 
 const CriminalLawPage: React.FC = () => {
   const router = useRouter();
+  const { darkMode } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleBack = () => {
     router.back();
   };
 
+  const menuItems = [
+    { title: "القوانين الأردنية", href: "/legal-codes" },
+    { title: "الكتب الدراسية", href: "/course-books" },
+    { title: "المواضيع القانونية المثيرة للجدل", href: "/controversial-legal-topics" },
+    { title: "بنك الأسئلة", href: "/question-bank" },
+    { title: "تواصل معنا", href: "/contact" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-blue-600 text-white shadow-md">
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
+      <style>{styles}</style>
+      <header className={`${darkMode ? 'bg-blue-800' : 'bg-blue-600'} text-white shadow-md`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold">
               رؤيا قانونية
             </Link>
-            <nav>
-              <ul className="flex space-x-reverse space-x-4">
-                <li>
-                  <Link href="/" className="hover:text-white/80 transition-colors">
-                    <Home size={28} />
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <div className="flex items-center">
+              <Link href="/" className="hover:text-white/80 transition-colors mr-4">
+                <Home size={28} />
+              </Link>
+              <button
+                onClick={toggleMenu}
+                className="p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-900 transition-colors duration-300"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
+      {/* القائمة المنسدلة */}
+      {isMenuOpen && (
+        <div className={`${darkMode ? 'bg-blue-700' : 'bg-blue-500'}`}>
+          <div className="container mx-auto px-4 py-2">
+            {menuItems.map((item, index) => (
+              <Link 
+                key={index} 
+                href={item.href} 
+                className="block py-2 text-white hover:bg-blue-600 dark:hover:bg-blue-800 menu-title text-lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       <main className="container mx-auto px-4 py-8 relative" dir="rtl">
         <button 
           onClick={handleBack} 
-          className="absolute top-0 right-4 mt-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+          className={`absolute top-0 right-4 mt-4 inline-flex items-center ${darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'}`}
         >
           <ArrowRight className="ml-2" />
           رجوع
         </button>
 
-        <h1 className="text-4xl font-bold mb-6 text-center">القانون الجنائي في الأردن</h1>
+        <h1 className={`text-4xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>القانون الجنائي في الأردن</h1>
         
-        <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">نظرة عامة</h2>
-          <p className="text-gray-700 mb-4">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرة عامة</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
             يعد القانون الجنائي في الأردن من أهم فروع القانون التي تهدف إلى حماية المجتمع وضمان الأمن والاستقرار. يحدد هذا القانون الأفعال التي تعتبر جرائم والعقوبات المترتبة عليها، كما ينظم إجراءات التحقيق والمحاكمة في القضايا الجنائية.
           </p>
         </section>
 
-        <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">أهم النقاط في القانون الجنائي الأردني</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>أهم النقاط في القانون الجنائي الأردني</h2>
+          <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             <li>تصنيف الجرائم (جنايات، جنح، مخالفات)</li>
             <li>تحديد أركان الجريمة (الركن المادي والركن المعنوي)</li>
             <li>تنظيم العقوبات وأنواعها</li>
@@ -62,12 +105,12 @@ const CriminalLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">أنواع الجرائم</h2>
-          <p className="text-gray-700 mb-4">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>أنواع الجرائم</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
             يصنف القانون الجنائي الأردني الجرائم إلى عدة أنواع، منها:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             <li>الجرائم الواقعة على الأشخاص (القتل، الإيذاء)</li>
             <li>الجرائم الواقعة على الأموال (السرقة، الاحتيال)</li>
             <li>الجرائم المخلة بالإدارة العامة (الرشوة، اختلاس المال العام)</li>
@@ -77,28 +120,28 @@ const CriminalLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">العقوبات</h2>
-          <p className="text-gray-700 mb-4">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>العقوبات</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
             يحدد القانون الجنائي الأردني مجموعة من العقوبات التي يمكن فرضها على مرتكبي الجرائم، ومنها:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             <li>الإعدام (في حالات محددة جدًا)</li>
             <li>الأشغال الشاقة المؤبدة أو المؤقتة</li>
             <li>الاعتقال</li>
             <li>الحبس</li>
             <li>الغرامة</li>
             <li>المصادرة</li>
-            <li>العقوبات البديلة (مثل الخدمة لمجتمعية)</li>
+            <li>العقوبات البديلة (مثل الخدمة المجتمعية)</li>
           </ul>
         </section>
 
-        <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">حقوق المتهم</h2>
-          <p className="text-gray-700 mb-4">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>حقوق المتهم</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
             يكفل القانون الجنائي الأردني مجموعة من الحقوق للمتهم، منها:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             <li>الحق في افتراض البراءة حتى تثبت الإدانة</li>
             <li>الحق في الدفاع والاستعانة بمحامٍ</li>
             <li>الحق في محاكمة عادلة وعلنية</li>
@@ -109,12 +152,16 @@ const CriminalLawPage: React.FC = () => {
 
         <div className="text-center">
           <a 
-            href="/pdfs/crimnal-code.pdf"
-            className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+            href="/pdfs/criminal-code.pdf"
+            className={`inline-flex items-center ${
+              darkMode 
+                ? 'bg-blue-700 hover:bg-blue-600' 
+                : 'bg-blue-600 hover:bg-blue-700'
+            } text-white px-6 py-3 rounded-md transition-colors`}
             download="القانون_الجنائي_الأردني.pdf"
           >
             <FileDown size={20} className="ml-2" />
-            تحميل الن الكامل للقانون الجنائي الأردني (PDF)
+            تحميل النص الكامل للقانون الجنائي الأردني (PDF)
           </a>
         </div>
       </main>

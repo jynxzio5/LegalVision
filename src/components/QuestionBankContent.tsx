@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { ArrowRight, FileDown } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const exams = [
   { id: 1, name: 'امتحان القانون المدني 2022', file: '/pdfs/civil-law-exam-2022.pdf' },
@@ -11,6 +12,7 @@ const exams = [
 
 const QuestionBankContent: React.FC = () => {
   const router = useRouter();
+  const { darkMode } = useTheme();
 
   const handleBack = () => {
     router.back();
@@ -26,16 +28,25 @@ const QuestionBankContent: React.FC = () => {
         رجوع
       </button>
 
-      <h1 className="text-4xl font-bold mb-6 text-center">بنك الأسئلة</h1>
+      <h1 className={`text-4xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>بنك الأسئلة</h1>
       
       <div className="grid gap-4">
         {exams.map((exam) => (
-          <div key={exam.id} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+          <div 
+            key={exam.id} 
+            className={`p-4 rounded-lg shadow-md flex justify-between items-center ${
+              darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+            }`}
+          >
             <span className="text-lg font-semibold">{exam.name}</span>
             <a 
               href={exam.file}
               download
-              className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              className={`inline-flex items-center px-4 py-2 rounded-md transition-colors ${
+                darkMode 
+                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
             >
               <FileDown size={20} className="mr-2" />
               تحميل
