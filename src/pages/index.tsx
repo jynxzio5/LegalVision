@@ -68,11 +68,6 @@ const Home: React.FC = () => {
       title: "قانون الأسرة", 
       description: "دراسة لقوانين الأسرة والزواج والطلاق في الأردن.",
       link: "/legal-topics/family-law"
-    },
-    { 
-      title: "القانون التجاري", 
-      description: "تحليل للقوانين التي تحكم الأعمال التجارية في الأردن.",
-      link: "/legal-topics/commercial-law"
     }
   ];
 

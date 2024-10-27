@@ -7,8 +7,11 @@ import { useTheme } from '../../contexts/ThemeContext';
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
 
-  .menu-title {
+  body, html {
     font-family: 'Tajawal', sans-serif;
+  }
+
+  .menu-title {
     font-weight: 700;
   }
 `;

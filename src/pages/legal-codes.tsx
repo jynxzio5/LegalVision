@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Book, Briefcase, Users, Gavel, Shield, Home, Menu, X } from 'lucide-react';
+import { Book, Briefcase, Users, Gavel, Shield, Home, Menu, X, Scale, ShoppingCart, Globe, Building } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const styles = `
@@ -28,10 +28,16 @@ const LegalCodes = () => {
 
   const codes = [
     { title: "القانون المدني", icon: Book, link: "/legal-topics/civil-law" },
-    { title: "القانون التجاري", icon: Briefcase, link: "/legal-topics/commercial-law" },
     { title: "قانون الأسرة", icon: Users, link: "/legal-topics/family-law" },
     { title: "قانون العمل", icon: Gavel, link: "/legal-topics/labor-law" },
     { title: "القانون الجنائي", icon: Shield, link: "/legal-topics/criminal-law" },
+    { title: "قانون أصول المحاكمات الجزائية", icon: Scale, link: "/legal-topics/criminal-procedure-law" },
+    { title: "قانون أصول المحاكمات المدنية", icon: Scale, link: "/legal-topics/civil-procedure-law" },
+    { title: "قانون التجارة", icon: ShoppingCart, link: "/legal-topics/trade-law" },
+    { title: "قانون المعاملات الإلكترونية", icon: Globe, link: "/legal-topics/electronic-transactions-law" },
+    { title: "قانون الملكية العقارية", icon: Building, link: "/legal-topics/real-estate-law" },
+    { title: "قانون الإعسار", icon: Briefcase, link: "/legal-topics/insolvency-law" },
+    { title: "قانون الملكية الفكرية", icon: Book, link: "/legal-topics/intellectual-property-law" },
   ];
 
   return (

@@ -5,11 +5,18 @@ import { useRouter } from 'next/router';
 import { useTheme } from '../../contexts/ThemeContext';
 
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
 
-  .menu-title {
+  body, html {
     font-family: 'Tajawal', sans-serif;
+  }
+
+  h1, h2, .menu-title {
     font-weight: 700;
+  }
+
+  p, li {
+    font-weight: 500;
   }
 `;
 
@@ -33,8 +40,8 @@ const LaborLawPage: React.FC = () => {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
-      <style>{styles}</style>
+    <div className={`min-h-screen font-tajawal ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
+      <style jsx global>{styles}</style>
       <header className={`${darkMode ? 'bg-blue-800' : 'bg-blue-600'} text-white shadow-md`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -127,18 +134,18 @@ const LaborLawPage: React.FC = () => {
           </p>
         </section>
 
-        <div className="text-center">
+        <div className="text-center mt-8">
           <a 
             href="/pdfs/labor-code.pdf"
-            className={`inline-flex items-center ${
+            className={`inline-flex items-center justify-center ${
               darkMode 
-                ? 'bg-blue-700 hover:bg-blue-600' 
-                : 'bg-blue-600 hover:bg-blue-700'
-            } text-white px-6 py-3 rounded-md transition-colors`}
+                ? 'bg-blue-600 hover:bg-blue-500' 
+                : 'bg-blue-500 hover:bg-blue-600'
+            } text-white px-6 py-3 rounded-full transition-colors text-base font-semibold shadow-md`}
             download="قانون_العمل_الأردني.pdf"
           >
-            <FileDown size={20} className="ml-2" />
-            تحميل النص الكامل لقانون العمل الأردني (PDF)
+            <FileDown size={18} className="ml-2" />
+            <span>تحميل القانون (PDF)</span>
           </a>
         </div>
       </main>

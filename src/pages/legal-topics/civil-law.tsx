@@ -4,15 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from '../../contexts/ThemeContext';
 
-const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
-  .menu-title {
-    font-family: 'Tajawal', sans-serif;
-    font-weight: 700;
-  }
-`;
-
 const CivilLawPage: React.FC = () => {
   const router = useRouter();
   const { darkMode } = useTheme();
@@ -24,6 +15,19 @@ const CivilLawPage: React.FC = () => {
     router.back();
   };
 
+  const handleDownload = () => {
+    // تحديد مسار الملف
+    const filePath = '/pdfs/civil-code.pdf';
+    
+    // إنشاء رابط للتحميل
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = 'القانون_المدني_الأردني.pdf'; // اسم الملف عند التحميل
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const menuItems = [
     { title: "القوانين الأردنية", href: "/legal-codes" },
     { title: "الكتب الدراسية", href: "/course-books" },
@@ -33,8 +37,30 @@ const CivilLawPage: React.FC = () => {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
-      <style>{styles}</style>
+    <div className={`min-h-screen font-tajawal ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        body {
+          font-family: 'Tajawal', sans-serif;
+          font-size: 18px;
+          line-height: 1.6;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 700;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+          font-weight: 700;
+        }
+
+        p, li {
+          font-weight: 500;
+        }
+      `}</style>
       <header className={`${darkMode ? 'bg-blue-800' : 'bg-blue-600'} text-white shadow-md`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -83,17 +109,17 @@ const CivilLawPage: React.FC = () => {
           رجوع
         </button>
 
-        <h1 className={`text-4xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>القانون المدني في الأردن</h1>
+        <h1 className={`text-4xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>القانون المدني في الأردن</h1>
         
-        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
-          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرة عامة</h2>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرة عامة</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 leading-relaxed`}>
             يعد القانون المدني في الأردن الركيزة الأساسية للنظام القانوني الخاص. يهدف هذا القانون إلى تنظيم العلاقات بين الأفراد والكيانات الخاصة، ويشمل مجموعة واسعة من المجالات مثل العقود، الملكية، المسؤولية التقصيرية، وقانون الأسرة.
           </p>
         </section>
 
-        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
-          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>أهم النقاط في القانون المدني الأردني</h2>
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>أهم النقاط في القانون المدني الأردني</h2>
           <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             <li>مصادر الالتزام (العقد، الإرادة المنفردة، العمل غير المشروع، الإثراء بلا سبب، القانون)</li>
             <li>نظرية العقد (أركان العقد، صحة العقد، آثار العقد، انحلال العقد)</li>
@@ -104,9 +130,9 @@ const CivilLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
-          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرية العقد</h2>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرية العقد</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 leading-relaxed`}>
             تعد نظرية العقد من أهم الموضوعات في القانون المدني الأردني، وتشمل:
           </p>
           <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -118,9 +144,9 @@ const CivilLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
-          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>المسؤولية التقصيرية</h2>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>المسؤولية التقصيرية</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 leading-relaxed`}>
             تنظم المسؤولية التقصيرية في القانون المدني الأردني الأضرار الناتجة عن الأفعال غير المشروعة، وتشمل:
           </p>
           <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -132,9 +158,9 @@ const CivilLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-md mb-8`}>
-          <h2 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>الحقوق العينية</h2>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
+          <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>الحقوق العينية</h2>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 leading-relaxed`}>
             ينظم القانون المدني الأردني الحقوق العينية، وهي الحقوق التي ترد على الأشياء مباشرة، وتشمل:
           </p>
           <ul className={`list-disc list-inside space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -145,19 +171,18 @@ const CivilLawPage: React.FC = () => {
           </ul>
         </section>
 
-        <div className="text-center">
-          <a 
-            href="/pdfs/civil-code.pdf"
-            className={`inline-flex items-center ${
+        <div className="text-center mt-8">
+          <button 
+            onClick={handleDownload}
+            className={`inline-flex items-center justify-center ${
               darkMode 
-                ? 'bg-blue-700 hover:bg-blue-600' 
-                : 'bg-blue-600 hover:bg-blue-700'
-            } text-white px-6 py-3 rounded-md transition-colors`}
-            download="القانون_المدني_الأردني.pdf"
+                ? 'bg-blue-600 hover:bg-blue-500' 
+                : 'bg-blue-500 hover:bg-blue-600'
+            } text-white px-6 py-3 rounded-full transition-colors text-base font-semibold shadow-md`}
           >
-            <FileDown size={20} className="ml-2" />
-            تحميل النص الكامل للقانون المدني الأردني (PDF)
-          </a>
+            <FileDown size={18} className="ml-2" />
+            <span>تحميل القانون (PDF)</span>
+          </button>
         </div>
       </main>
     </div>

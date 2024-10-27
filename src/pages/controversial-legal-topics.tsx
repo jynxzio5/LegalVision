@@ -4,10 +4,13 @@ import { Home, Menu, X } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+  body, html {
+    font-family: 'Tajawal', sans-serif;
+  }
 
   .menu-title {
-    font-family: 'Tajawal', sans-serif;
     font-weight: 700;
   }
 `;
@@ -50,8 +53,8 @@ const ControversialLegalTopics: React.FC = () => {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
-      <style>{styles}</style>
+    <div className={`min-h-screen font-tajawal ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
+      <style jsx global>{styles}</style>
       <header className={`${darkMode ? 'bg-blue-800' : 'bg-blue-600'} text-white shadow-md`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">

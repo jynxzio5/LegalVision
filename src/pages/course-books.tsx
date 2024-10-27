@@ -29,11 +29,12 @@ const CourseBooks = () => {
   ];
 
   const books = [
-    { title: "مجلة الأحكام العدلية", filename: "/pdfs/majallat-al-ahkam-al-adliyyah.pdf", available: true },
-    { title: "الثقافة الوطنية", filename: "/pdfs/national-culture.pdf", available: true },
+    { title: "مجلة الأحكام العدلية", filename: "/pdfs/book.pdf", available: true },
+    { title: "الثقافة الوطنية", filename: "/pdfs/book6.pdf", available: true },
     { title: "الإسلام وقضايا العصر", filename: "/pdfs/islam-contemporary-issues.pdf", available: true },
     { title: "الريادة والابتكار", filename: "/pdfs/book3.pdf", available: true },
-    { title: "أخلاق وقيم", filename: "/pdfs/ethics-values.pdf", available: true },
+    { title: "أخلاق وقيم", filename: "/pdfs/short4.pdf", available: true },
+    { title: "القانون الدولي العام", filename: "/pdfs/book1.pdf", available: true },
   ];
 
   const summaries = [
@@ -41,6 +42,10 @@ const CourseBooks = () => {
     { title: "التنظيم الاداري", author: "الطالب عبدالله ملكاوي", filename: "/pdfs/tal5es.pdf" },
     { title: "احكام التزام", author: "الطالبتين هبة ناصر قطاني / سوار محمد العداربة", filename: "/pdfs/ahkam-eltzam.pdf" },
     { title: "مصادر التزام غير ارادية", author: "الطالب احمد عياصرة", filename: "/pdfs/non-voluntary-obligation-sources-summary.pdf" },
+    { title: "أصول محاكمات جزائية", author: "غير معروف", filename: "/pdfs/short1.pdf" },
+    { title: "مهارات اللغة العربية", author: "غير معروف", filename: "/pdfs/short2.pdf" },
+    { title: "القانون الدولي الخاص", author: "الدكتور خلدون القطيشات", filename: "/pdfs/short3.pdf" },
+    { title: "اساسيات اللغة الانجليزية", author: "اهل الهمة", filename: "/pdfs/short6.pdf" },
   ];
 
   const handleDownload = (filename: string) => {
