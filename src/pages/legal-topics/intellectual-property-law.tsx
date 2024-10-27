@@ -115,7 +115,7 @@ const IntellectualPropertyLaw: React.FC = () => {
           رجوع
         </button>
 
-        <h1 className={`text-4xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>قانون الملكية ا��فكرية في الأردن</h1>
+        <h1 className={`text-4xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>قانون الملكية الفكرية في الأردن</h1>
         
         <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-lg shadow-md mb-8`}>
           <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>نظرة عامة</h2>
